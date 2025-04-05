@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-white text-gray-800 dark:bg-gray-900 dark:text-white">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart - PrimeBasket</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex flex-col px-4 py-6">
+  <div class="max-w-4xl mx-auto w-full">
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="text-3xl font-bold">Your Cart</h1>
+      <button id="theme-toggle" class="bg-gray-200 text-black dark:bg-gray-700 dark:text-white px-4 py-2 rounded">Toggle Theme</button>
+    </div>
+
+    <div id="cart-items" class="space-y-6"></div>
+
+    <div id="cart-summary" class="mt-10 border-t pt-6 text-right text-lg font-semibold hidden">
+      Total: ₹<span id="total-price">0</span>
+    </div>
+
+    <div id="empty-message" class="text-center mt-10 text-gray-600 text-lg hidden">
+      Your cart is empty. <a href="index.html" class="text-blue-500 hover:underline">Go shopping</a>
+    </div>
+  </div>
+
+  <script>
+    const html = document.documentElement;
+    const toggleBtn = document.getElementById('theme-toggle');
+    const cartItemsContainer = document.getElementById('cart-items');
+    const totalPriceElement = document.getElementById('total-price');
+    const cartSummary = document.getElementById('cart-summary');
+    const emptyMessage = document.getElementById('empty-message');
+
+    // Load saved theme
+    if (localStorage.getItem('theme') === 'dark') {
+      html.classList.add('dark');
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    function renderCart() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cartItemsContainer.innerHTML = '';
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartSummary.classList.add('hidden');
+        emptyMessage.classList.remove('hidden');
+        return;
+      }
+
+      cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'flex flex-col md:flex-row items-center justify-between gap-4 border rounded-lg p-4 dark:border-gray-700 bg-white dark:bg-gray-800';
+
+        itemDiv.innerHTML = `
+          <div class="flex items-center gap-4">
+            <img src="${item.image}" alt="${item.name}" class="w-24 h-24 object-cover rounded" />
+            <div>
+              <h3 class="font-bold text-lg">${item.name}</h3>
+              <p class="text-gray-500 dark:text-gray-300">Price: ₹${item.price}</p>
+              <p class="text-gray-500 dark:text-gray-300">Quantity: ${item.quantity}</p>
+              <p class="text-gray-500 dark:text-gray-300">Total: ₹${itemTotal}</p>
+            </div>
+          </div>
+          <button data-index="${index}" class="remove-btn bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Remove</button>
+        `;
+
+        cartItemsContainer.appendChild(itemDiv);
+      });
+
+      totalPriceElement.textContent = total.toLocaleString();
+      cartSummary.classList.remove('hidden');
+      emptyMessage.classList.add('hidden');
+
+      document.querySelectorAll('.remove-btn').forEach(button => {
+        button.addEventListener('click', () => {
+          const index = button.getAttribute('data-index');
+          cart.splice(index, 1);
+          localStorage.setItem('cart', JSON.stringify(cart));
+          renderCart();
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', renderCart);
+  </script>
+</body>
+</html>
