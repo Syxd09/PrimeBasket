@@ -6,6 +6,9 @@ import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from django.contrib.postgres.search import TrigramSimilarity
+from fuzzywuzzy import process, fuzz
+
 
 @api_view(['GET'])
 def get_products(request):
@@ -33,14 +36,29 @@ def search_products(request):
     query = request.GET.get('q', '').lower()
     if not query:
         return Response([])
-    
-    products = Product.objects.filter(
-        product__icontains=query) | Product.objects.filter(
-        brand__icontains=query) | Product.objects.filter(
-        category__icontains=query) | Product.objects.filter(
-        description__icontains=query)
-    
-    serializer = ProductSerializer(products[:50], many=True)
+
+    # Fetch all products
+    products = list(Product.objects.all())
+
+    # Create a dictionary mapping product names to IDs
+    product_dict = {product.product: product.id for product in products}
+
+    # Set the similarity threshold (adjust as needed)
+    similarity_threshold = 80  # Increase for stricter matching, decrease for more results
+
+    # Use FuzzyWuzzy to find best matches
+    matches = process.extract(query, product_dict.keys(), limit=50)
+
+    # Extract matched product IDs with threshold filtering
+    matched_product_ids = [
+        product_dict[match[0]] for match in matches if match[1] >= similarity_threshold
+    ]
+
+    # Retrieve matched products
+    matched_products = Product.objects.filter(id__in=matched_product_ids)
+
+    # Serialize and return
+    serializer = ProductSerializer(matched_products, many=True)
     return Response(serializer.data)
 
 @api_view(['POST'])
