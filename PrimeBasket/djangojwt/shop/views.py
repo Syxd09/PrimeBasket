@@ -31,35 +31,66 @@ def get_products(request):
     serializer = ProductSerializer(products[:50], many=True)
     return Response(serializer.data)
 
+# @api_view(['GET'])
+# def search_products(request):
+#     query = request.GET.get('q', '').lower().strip()
+#     if not query:
+#         return Response([])
+
+#     # Fetch all product names and IDs in a list of tuples
+#     products = Product.objects.values_list('product', 'id')
+
+#     # Convert to a dictionary for easy lookup
+#     product_dict = {name: product_id for name, product_id in products}
+
+#     # Set similarity threshold (adjust as needed)
+#     similarity_threshold = 80  
+
+#     # Use RapidFuzz to find best matches
+#     matches = process.extract(query, product_dict.keys(), scorer=fuzz.WRatio, limit=50)
+
+#     # Extract matched product IDs with threshold filtering
+#     matched_product_ids = [
+#         product_dict[match[0]] for match in matches if match[1] >= similarity_threshold
+#     ]
+
+#     # Retrieve matched products
+#     matched_products = Product.objects.filter(id__in=matched_product_ids)
+
+#     # Serialize and return
+#     serializer = ProductSerializer(matched_products, many=True)
+#     return Response(serializer.data)
+
 @api_view(['GET'])
 def search_products(request):
-    query = request.GET.get('q', '').lower().strip()
-    if not query:
-        return Response([])
+    try:
+        query = request.GET.get('q', '').lower()
+        if not query:
+            return JsonResponse([], safe=False)
 
-    # Fetch all product names and IDs in a list of tuples
-    products = Product.objects.values_list('product', 'id')
+        # Filter products based on search query
+        products = Product.objects.filter(
+            category__icontains=query
+        ) | Product.objects.filter(
+            sub_category__icontains=query
+        ) | Product.objects.filter(
+            brand__icontains=query
+        ) | Product.objects.filter(
+            product__icontains=query
+        ) | Product.objects.filter(
+            description__icontains=query
+        )
 
-    # Convert to a dictionary for easy lookup
-    product_dict = {name: product_id for name, product_id in products}
+        # Convert queryset to a list of dictionaries
+        product_list = list(products.values(
+            "id", "category", "sub_category", "brand", "product", "type", "description", "market_price", "sale_price", "rating"
+        ))
 
-    # Set similarity threshold (adjust as needed)
-    similarity_threshold = 80  
+        return JsonResponse(product_list[:50], safe=False)  # Limit to 50 results
 
-    # Use RapidFuzz to find best matches
-    matches = process.extract(query, product_dict.keys(), scorer=fuzz.WRatio, limit=50)
-
-    # Extract matched product IDs with threshold filtering
-    matched_product_ids = [
-        product_dict[match[0]] for match in matches if match[1] >= similarity_threshold
-    ]
-
-    # Retrieve matched products
-    matched_products = Product.objects.filter(id__in=matched_product_ids)
-
-    # Serialize and return
-    serializer = ProductSerializer(matched_products, many=True)
-    return Response(serializer.data)
+    except Exception as e:
+        print(f"Error in search_products: {e}")
+        return JsonResponse({'error': str(e)}, status=500)
 
 @api_view(['POST'])
 def add_to_cart(request):
