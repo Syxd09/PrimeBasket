@@ -37,7 +37,7 @@ def get_products(request):
         products = products.order_by("-rating")
 
     # Serialize and clean JSON output
-    serializer = ProductSerializer(products[:], many=True)
+    serializer = ProductSerializer(products[:500], many=True)
     serialized_data = _clean_json_floats(serializer.data)
 
     return Response(serialized_data)
@@ -70,7 +70,7 @@ def search_products(request):
     all_results = list(set(products) | set(fuzzy_matches))
 
     # Serialize and clean JSON output
-    serializer = ProductSerializer(all_results[:], many=True)
+    serializer = ProductSerializer(all_results[:50], many=True)
     serialized_data = _clean_json_floats(serializer.data)
 
     return Response(serialized_data)
@@ -128,7 +128,7 @@ def _get_recommended_products(product):
     recommendations = Product.objects.filter(category=product.category).exclude(id=product.id)
 
     # Prioritize top-rated and most-sold products
-    recommendations = recommendations.order_by("-rating")[:]
+    recommendations = recommendations.order_by("-rating")[:5]
 
     serializer = ProductSerializer(recommendations, many=True)
     return _clean_json_floats(serializer.data)
