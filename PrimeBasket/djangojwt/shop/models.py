@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.timezone import now
+# from django.utils.timezone import now
 
 class Product(models.Model):
     id = models.AutoField(primary_key=True)
@@ -25,7 +25,7 @@ class CartItem(models.Model):
     session_key = models.CharField(max_length=40, blank=True, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
-    created_at = models.DateTimeField(auto_now_add=True, default=now)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         unique_together = ('session_key', 'product')
