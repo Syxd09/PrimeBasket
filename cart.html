@@ -1,12 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-white text-gray-800 dark:bg-gray-900 dark:text-white">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cart - PrimeBasket</title>
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            dark1: '#8F87F1',
+            dark2: '#C68EFD',
+            dark3: '#E9A5F1',
+            dark4: '#FED2E2',
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body class="min-h-screen flex flex-col px-4 py-6">
+<body class="min-h-screen flex flex-col px-4 py-6 bg-white text-gray-800 dark:bg-dark1 dark:text-black">
   <div class="max-w-4xl mx-auto w-full">
     <div class="flex justify-between items-center mb-6">
       <h1 class="text-3xl font-bold">Your Cart</h1>
@@ -32,14 +52,18 @@
     const cartSummary = document.getElementById('cart-summary');
     const emptyMessage = document.getElementById('empty-message');
 
-    // Load saved theme
-    if (localStorage.getItem('theme') === 'dark') {
+    // Load saved theme or system preference
+    const userTheme = localStorage.getItem('theme');
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (userTheme === 'dark' || (!userTheme && systemDark)) {
       html.classList.add('dark');
     }
 
     toggleBtn.addEventListener('click', () => {
       html.classList.toggle('dark');
-      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+      const newTheme = html.classList.contains('dark') ? 'dark' : 'light';
+      localStorage.setItem('theme', newTheme);
     });
 
     function renderCart() {
