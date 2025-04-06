@@ -77,7 +77,7 @@ def search_products(request):
         | Product.objects.filter(description__icontains=query)
     )
 
-    serializer = ProductSerializer(products[:50], many=True)
+    serializer = ProductSerializer(products[:], many=True)
     return Response(serializer.data)
 
 
