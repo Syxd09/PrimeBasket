@@ -1,3 +1,4 @@
+import math
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -70,16 +71,28 @@ def search_products(request):
     if not query:
         return Response([])
 
-    products = (
-        Product.objects.filter(product__icontains=query)
-        | Product.objects.filter(brand__icontains=query)
-        | Product.objects.filter(category__icontains=query)
-        | Product.objects.filter(description__icontains=query)
+    # Improved Query Filtering
+    products = Product.objects.filter(
+        product__icontains=query
+    ) | Product.objects.filter(
+        brand__icontains=query
+    ) | Product.objects.filter(
+        category__icontains=query
+    ) | Product.objects.filter(
+        description__icontains=query
     )
 
-    serializer = ProductSerializer(products[:], many=True)
-    return Response(serializer.data)
+    serializer = ProductSerializer(products[:50], many=True)  # Limit to 50 results
+    serialized_data = serializer.data  # Convert to JSON-friendly data
 
+    # Ensure float values are JSON-compliant
+    for product in serialized_data:
+        for key in ["market_price", "sale_price", "rating"]:
+            if key in product and isinstance(product[key], float):
+                if math.isnan(product[key]) or math.isinf(product[key]):
+                    product[key] = None  # Replace NaN/Infinity with None
+
+    return Response(serialized_data)
 
 @api_view(["POST"])
 def add_to_cart(request):
