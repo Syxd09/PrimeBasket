@@ -13,6 +13,18 @@ class Product(models.Model):
     rating = models.FloatField(blank=True, null=True)
     discount = models.FloatField(blank=True, null=True)
 
+    class Meta:
+        indexes = [
+            models.Index(fields=['product']),
+            models.Index(fields=['category']),
+            models.Index(fields=['brand']),
+        ]
+
 class CartItem(models.Model):
+    session_key = models.CharField(max_length=40, blank=True, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('session_key', 'product')
