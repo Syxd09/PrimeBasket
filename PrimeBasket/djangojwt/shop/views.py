@@ -7,7 +7,7 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from django.contrib.postgres.search import TrigramSimilarity
-from fuzzywuzzy import process, fuzz
+from rapidfuzz  import process, fuzz
 
 
 @api_view(['GET'])
@@ -33,21 +33,21 @@ def get_products(request):
 
 @api_view(['GET'])
 def search_products(request):
-    query = request.GET.get('q', '').lower()
+    query = request.GET.get('q', '').lower().strip()
     if not query:
         return Response([])
 
-    # Fetch all products
-    products = list(Product.objects.all())
+    # Fetch all product names and IDs in a list of tuples
+    products = Product.objects.values_list('product', 'id')
 
-    # Create a dictionary mapping product names to IDs
-    product_dict = {product.product: product.id for product in products}
+    # Convert to a dictionary for easy lookup
+    product_dict = {name: product_id for name, product_id in products}
 
-    # Set the similarity threshold (adjust as needed)
-    similarity_threshold = 80  # Increase for stricter matching, decrease for more results
+    # Set similarity threshold (adjust as needed)
+    similarity_threshold = 80  
 
-    # Use FuzzyWuzzy to find best matches
-    matches = process.extract(query, product_dict.keys(), limit=50)
+    # Use RapidFuzz to find best matches
+    matches = process.extract(query, product_dict.keys(), scorer=fuzz.WRatio, limit=50)
 
     # Extract matched product IDs with threshold filtering
     matched_product_ids = [

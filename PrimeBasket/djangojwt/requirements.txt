@@ -5,6 +5,7 @@ django-cors-headers
 pandas
 scikit-learn
 fuzzywuzzy
+rapidfuzz 
 numpy
 dj-database-url
 psycopg2-binary
