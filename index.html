@@ -184,11 +184,8 @@
     const noProductsMessage = document.getElementById('no-products');
     const searchInput = document.getElementById('search-input');
 
-    let allProducts = products;
-    renderProducts(allProducts);
-
-    // Hide spinner after loading
-    loadingSpinner.style.display = 'none';
+        let allProducts = products;
+        renderProducts(allProducts);
 
     // Filter products by search
     searchInput.addEventListener('input', () => {
