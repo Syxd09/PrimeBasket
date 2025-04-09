@@ -193,7 +193,7 @@
             noProductsMessage.classList.add('hidden');
           }
 
-          list.results.forEach(product => {
+          list.forEach(product => {
             const card = document.createElement('div');
             card.className = 'border rounded-lg p-4 shadow-lg bg-white dark:bg-gray-800 flex flex-col items-center';
             card.innerHTML = `
