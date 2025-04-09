@@ -69,6 +69,14 @@
       </a>
     </div>
   </section>
+  <!-- Fetching products from API -->
+  <div id="loading-spinner" class="flex justify-center items-center mb-8">
+    <svg class="animate-spin h-10 w-10 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+    </svg>
+  </div>
+  
 
   <!-- Product Section -->
   <section id="products" class="bg-gray-200 dark:bg-dark4 py-12">
@@ -165,72 +173,81 @@
     });
 
     async function fetchProducts() {
-      try {
-        const response = await fetch('https://primebasket.onrender.com/api/shop/products');
-        const products = await response.json();
-        const productList = document.getElementById('product-list');
-        const noProductsMessage = document.getElementById('no-products');
-        const searchInput = document.getElementById('search-input');
+  const loadingSpinner = document.getElementById('loading-spinner');
+  try {
+    loadingSpinner.style.display = 'flex'; // Show spinner
 
-        let allProducts = products;
-        renderProducts(allProducts);
+    const response = await fetch('https://primebasket.onrender.com/api/shop/products');
+    const products = await response.json();
 
-        // Filter products by search
-        searchInput.addEventListener('input', () => {
-          const query = searchInput.value.toLowerCase();
-          const filtered = allProducts.filter(p =>
-            p.product.toLowerCase().includes(query)
-          );
-          renderProducts(filtered);
-        });
+    const productList = document.getElementById('product-list');
+    const noProductsMessage = document.getElementById('no-products');
+    const searchInput = document.getElementById('search-input');
 
-        function renderProducts(list) {
-          productList.innerHTML = '';
-          if (list.length === 0) {
-            noProductsMessage.classList.remove('hidden');
-            return;
-          } else {
-            noProductsMessage.classList.add('hidden');
-          }
+    let allProducts = products;
+    renderProducts(allProducts);
 
-          list.forEach(product => {
-            const card = document.createElement('div');
-            card.className = 'border rounded-lg p-4 shadow-lg bg-white dark:bg-gray-800 flex flex-col items-center';
-            card.innerHTML = `
-              <img src="${product.image || 'https://via.placeholder.com/150'}" alt="${product.product}" class="w-full h-48 object-cover rounded-md mb-4">
-              <h3 class="text-lg font-semibold product-name">${product.product}</h3>
-              <p class="text-gray-500 dark:text-gray-300 text-sm">${product.category} - ${product.sub_category}</p>
-              <p class="text-sm mt-2 text-center">${product.description?.substring(0, 100) || 'No description available'}...</p>
-              <p class="font-bold mt-2">Price: ₹${product.sale_price} <span class="line-through text-gray-400">₹${product.market_price}</span></p>
-              <p class="text-yellow-500">⭐ ${product.rating || 'No Rating'}</p>
-              <button class="mt-4 w-full bg-primary text-white py-2 rounded hover:bg-secondary transition add-to-cart-btn">Add to Cart</button>
-            `;
-            card.querySelector('.add-to-cart-btn').addEventListener('click', () => {
-              const name = product.product;
-              const price = parseInt(product.sale_price);
-              const image = product.image;
-              let cart = JSON.parse(localStorage.getItem('cart')) || [];
-              const existing = cart.find(item => item.name === name);
-              if (existing) {
-                existing.quantity += 1;
-              } else {
-                cart.push({ name, price, image, quantity: 1 });
-              }
-              localStorage.setItem('cart', JSON.stringify(cart));
-              updateCartCount();
-              alert(`${name} added to cart!`);
-            });
-            productList.appendChild(card);
-          });
-        }
-      } catch (err) {
-        console.error('Error fetching products:', err);
-        document.getElementById('no-products').textContent = 'Failed to load products. Please try again later.';
-        document.getElementById('no-products').classList.remove('hidden');
+    // Hide spinner after loading
+    loadingSpinner.style.display = 'none';
+
+    // Filter products by search
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      const filtered = allProducts.filter(p =>
+        p.product.toLowerCase().includes(query)
+      );
+      renderProducts(filtered);
+    });
+
+    function renderProducts(list) {
+      productList.innerHTML = '';
+      if (list.length === 0) {
+        noProductsMessage.classList.remove('hidden');
+        return;
+      } else {
+        noProductsMessage.classList.add('hidden');
       }
+
+      list.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'border rounded-lg p-4 shadow-lg bg-white dark:bg-gray-800 flex flex-col items-center';
+        card.innerHTML = `
+          <img src="${product.image || 'https://via.placeholder.com/150'}" alt="${product.product}" class="w-full h-48 object-cover rounded-md mb-4">
+          <h3 class="text-lg font-semibold product-name">${product.product}</h3>
+          <p class="text-gray-500 dark:text-gray-300 text-sm">${product.category} - ${product.sub_category}</p>
+          <p class="text-sm mt-2 text-center">${product.description?.substring(0, 100) || 'No description available'}...</p>
+          <p class="font-bold mt-2">Price: ₹${product.sale_price} <span class="line-through text-gray-400">₹${product.market_price}</span></p>
+          <p class="text-yellow-500">⭐ ${product.rating || 'No Rating'}</p>
+          <button class="mt-4 w-full bg-primary text-white py-2 rounded hover:bg-secondary transition add-to-cart-btn">Add to Cart</button>
+        `;
+        card.querySelector('.add-to-cart-btn').addEventListener('click', () => {
+          const name = product.product;
+          const price = parseInt(product.sale_price);
+          const image = product.image;
+          let cart = JSON.parse(localStorage.getItem('cart')) || [];
+          const existing = cart.find(item => item.name === name);
+          if (existing) {
+            existing.quantity += 1;
+          } else {
+            cart.push({ name, price, image, quantity: 1 });
+          }
+          localStorage.setItem('cart', JSON.stringify(cart));
+          updateCartCount();
+          alert(`${name} added to cart!`);
+        });
+        productList.appendChild(card);
+      });
     }
 
-    document.addEventListener('DOMContentLoaded', fetchProducts);
+  } catch (err) {
+    console.error('Error fetching products:', err);
+    document.getElementById('no-products').textContent = 'Failed to load products. Please try again later.';
+    document.getElementById('no-products').classList.remove('hidden');
+  } finally {
+    loadingSpinner.style.display = 'none'; // Ensure spinner hides even on error
+  }
+}
+
   </script>
 </body>
 </html>
