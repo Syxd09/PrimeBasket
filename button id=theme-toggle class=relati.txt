@@ -1,0 +1,112 @@
+<button id="theme-toggle" class="relative w-12 h-6 bg-gray-300 rounded-full p-1 dark:bg-gray-700 transition-all">
+        <div id="theme-thumb" class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform dark:translate-x-6"></div>
+      </button>
+
+
+
+
+
+
+
+
+
+
+#profile 
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PrimeBasket - Profile</title>
+
+    <!-- Set theme before page load -->
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+
+    <!-- Tailwind -->
+    <script src="
+https://cdn.tailwindcss.com/
+"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {}
+            }
+        };
+    </script>
+</head>
+
+<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-white min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <header class="bg-black text-white dark:bg-gray-800 shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold tracking-wide">🛍️ PrimeBasket</h1>
+            <button id="theme-toggle"
+                class="text-sm px-4 py-2 rounded bg-gray-200 text-black dark:bg-gray-700 dark:text-white transition">
+                Toggle Theme
+            </button>
+        </div>
+    </header>
+
+    <!-- Profile Section -->
+    <main class="flex-grow px-4 py-8">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-semibold mb-6">Your Profile</h2>
+            <div id="profile-info" class="border rounded-lg p-6 shadow-lg bg-white dark:bg-gray-800">
+                <p class="text-center text-gray-500">Loading profile...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black dark:bg-gray-800 text-center py-4 text-sm text-gray-500 dark:text-gray-100">
+        &copy; 2025 PrimeBasket. All rights reserved.
+    </footer>
+
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        toggleBtn.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        async function fetchProfile() {
+            try {
+                const response = await fetch('
+https://primebasket.onrender.com/api/dashboard/
+');
+                const user = await response.json();
+                const profileInfo = document.getElementById('profile-info');
+
+                profileInfo.innerHTML = `
+          <h3 class="text-xl font-semibold">${
+user.name
+ || 'No Name'}</h3>
+          <p class="text-gray-500">Email: ${
+user.email
+ || 'No Email'}</p>
+          <p class="text-gray-500">Phone: ${
+user.phone
+ || 'No Phone'}</p>
+          <p class="text-gray-500">Joined: ${user.joined_date || 'Unknown'}</p>
+          <p class="text-gray-500">Address: ${user.address || 'No Address'}</p>
+        `;
+            } catch (error) {
+                console.error('Error fetching profile:', error);
+                document.getElementById('profile-info').innerHTML = '<p class="text-center text-red-500">Failed to load profile. Please try again later.</p>';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchProfile);
+    </script>
+</body>
+
+</html> 

@@ -25,8 +25,11 @@
             dark2: '#C68EFD',
             dark3: '#E9A5F1',
             dark4: '#FED2E2',
-            primary: '#8F87F1',
-            secondary: '#C68EFD',
+            primary: '#FF7477',
+            secondary: '#CEB5B7',
+            base: '#B5D6D6',
+            highlight: '#9CF6F6',
+            textdark: '#0A141B'
           }
         }
       }
@@ -34,23 +37,24 @@
   </script>
 </head>
 
-<body class="bg-white text-gray-800 dark:bg-dark1 dark:text-black">
+<body class="bg-base text-textdark dark:bg-dark1 dark:text-black">
 
   <!-- Navbar -->
-  <nav class="bg-black text-white px-6 py-4 flex items-center justify-between shadow-md dark:bg-dark2 dark:text-white">
+  <nav class="bg-white text-textdark px-6 py-4 flex items-center justify-between shadow-md dark:bg-dark2 dark:text-white">
     <div class="flex items-center gap-10">
       <img src="image-logo.png" alt="PrimeBasket Logo" class="h-10 w-auto" />
     </div>
     <div class="flex items-center gap-4">
-      <a href="#contact" class="border border-white px-2 py-1 rounded hover:bg-white hover:text-black transition">Contact</a>
-      <a href="#" class="border border-white px-2 py-1 rounded hover:bg-white hover:text-black transition">About Us</a>
-      <a id="login-link" href="login.html" class="border border-white px-2 py-1 rounded hover:bg-white hover:text-black transition">Login</a>
-      <a href="cart.html" class="relative border border-white px-3 py-1 rounded hover:bg-white hover:text-black transition flex items-center gap-1">
+      <a href="#contact" class="border border-textdark px-2 py-1 rounded hover:bg-textdark hover:text-white transition">Contact</a>
+      <a href="#" class="border border-textdark px-2 py-1 rounded hover:bg-textdark hover:text-white transition">About Us</a>
+      <a href="login.html" class="border border-textdark px-2 py-1 rounded hover:bg-textdark hover:text-white transition">Login</a>
+      <a href="cart.html" class="relative border border-textdark px-3 py-1 rounded hover:bg-textdark hover:text-white transition flex items-center gap-1">
         🛒 <span class="hidden sm:inline">Cart</span>
-        <span id="cart-count" class="absolute -top-2 -right-2 bg-red-600 text-black text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+        <span id="cart-count" class="absolute -top-2 -right-2 bg-red-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
       </a>
+      <!-- Theme Toggle Switch -->
       <button id="theme-toggle" class="relative w-12 h-6 bg-gray-300 rounded-full p-1 dark:bg-gray-700 transition-all">
-        <div id="theme-thumb" class="absolute top-0.5 left-0.5 w-5 h-5 bg-black rounded-full transition-transform dark:translate-x-6 dark:bg-white"></div>
+        <div id="theme-thumb" class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform"></div>
       </button>
     </div>
   </nav>
@@ -71,7 +75,7 @@
   </section>
 
   <!-- Product Section -->
-  <section id="products" class="bg-gray-200 dark:bg-dark4 py-12">
+  <section id="products" class="bg-white dark:bg-dark4 py-12">
     <main class="flex-grow px-4 py-8">
       <div class="max-w-6xl mx-auto">
         <h2 class="text-3xl font-semibold mb-6 text-center">Our Products</h2>
@@ -91,27 +95,27 @@
   <!-- Contact Section -->
   <section id="contact" class="bg-gray-100 dark:bg-dark2 py-20 px-6">
     <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-4xl font-bold mb-4 text-gray-900 dark:text-black">Get in Touch</h2>
-      <p class="text-gray-600 dark:text-black mb-10 text-lg">We'd love to hear your feedback or answer any questions you may have.</p>
+      <h2 class="text-4xl font-bold mb-4 text-textdark dark:text-black">Get in Touch</h2>
+      <p class="text-textdark dark:text-black mb-10 text-lg">We'd love to hear your feedback or answer any questions you may have.</p>
       <form class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left bg-white dark:bg-dark4 shadow-lg rounded-lg p-8">
         <div class="md:col-span-2">
-          <label class="block mb-2 font-semibold text-gray-700 dark:text-black">Full Name</label>
+          <label class="block mb-2 font-semibold text-textdark dark:text-black">Full Name</label>
           <input type="text" placeholder="Your Name" class="w-full px-5 py-3 rounded-lg bg-gray-100 dark:bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-dark1 transition duration-300" />
         </div>
         <div>
-          <label class="block mb-2 font-semibold text-gray-700 dark:text-black">Email</label>
+          <label class="block mb-2 font-semibold text-textdark dark:text-black">Email</label>
           <input type="email" placeholder="you@example.com" class="w-full px-5 py-3 rounded-lg bg-gray-100 dark:bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-dark1 transition duration-300" />
         </div>
         <div>
-          <label class="block mb-2 font-semibold text-gray-700 dark:text-black">Subject</label>
+          <label class="block mb-2 font-semibold text-textdark dark:text-black">Subject</label>
           <input type="text" placeholder="Subject" class="w-full px-5 py-3 rounded-lg bg-gray-100 dark:bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-dark1 transition duration-300" />
         </div>
         <div class="md:col-span-2">
-          <label class="block mb-2 font-semibold text-gray-700 dark:text-black">Message</label>
+          <label class="block mb-2 font-semibold text-textdark dark:text-black">Message</label>
           <textarea rows="5" placeholder="Type your message..." class="w-full px-5 py-3 rounded-lg bg-gray-100 dark:bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-dark1 transition duration-300 resize-none"></textarea>
         </div>
         <div class="md:col-span-2">
-          <button type="submit" class="w-full bg-black text-white font-semibold py-3 rounded-lg hover:bg-gray-800 transition duration-300">
+          <button type="submit" class="w-full bg-textdark text-white font-semibold py-3 rounded-lg hover:bg-gray-800 transition duration-300">
             Send Message
           </button>
         </div>
@@ -120,7 +124,7 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-black text-gray-600 text-center py-6 mt-12 dark:bg-dark2 dark:text-black">
+  <footer class="bg-textdark text-gray-300 text-center py-6 mt-12 dark:bg-dark2 dark:text-black">
     <p>&copy; 2025 PrimeBasket. All rights reserved.</p>
   </footer>
 
@@ -137,31 +141,27 @@
       updateCartCount();
 
       const toggleBtn = document.getElementById('theme-toggle');
+      const thumb = document.getElementById('theme-thumb');
       const html = document.documentElement;
 
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
-        html.classList.add('dark');
-      } else {
-        html.classList.remove('dark');
+      function applyTheme(theme) {
+        if (theme === 'dark') {
+          html.classList.add('dark');
+          thumb.classList.add('translate-x-6');
+        } else {
+          html.classList.remove('dark');
+          thumb.classList.remove('translate-x-6');
+        }
+        localStorage.setItem('theme', theme);
       }
 
-      if (toggleBtn) {
-        toggleBtn.addEventListener('click', () => {
-          html.classList.toggle('dark');
-          const isDark = html.classList.contains('dark');
-          localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        });
-      }
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      applyTheme(savedTheme);
 
-      // Handle Login/Profile switch
-      const loginLink = document.getElementById('login-link');
-      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-
-      if (isLoggedIn && loginLink) {
-        loginLink.textContent = 'Profile';
-        loginLink.setAttribute('href', 'profile.html');
-      }
+      toggleBtn.addEventListener('click', () => {
+        const isDark = html.classList.contains('dark');
+        applyTheme(isDark ? 'light' : 'dark');
+      });
     });
 
     async function fetchProducts() {
@@ -175,7 +175,6 @@
         let allProducts = products;
         renderProducts(allProducts);
 
-        // Filter products by search
         searchInput.addEventListener('input', () => {
           const query = searchInput.value.toLowerCase();
           const filtered = allProducts.filter(p =>
