@@ -1,314 +1,312 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PrimeBasket - Shop Here</title>
-  <link rel="icon" type="image/x-icon" href="favicon.png">
+  <title>Ultimate Graphics</title>
+  <link rel="icon" href="public/ug-logo.png" type="image/x-icon" />
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
 
-  <!-- Set theme before loading CSS -->
-  <script>
-    if (localStorage.getItem('theme') === 'dark') {
-      document.documentElement.classList.add('dark');
-    }
-  </script>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
+      darkMode: "class",
       theme: {
         extend: {
           colors: {
-            dark1: '#8F87F1',
-            dark2: '#C68EFD',
-            dark3: '#E9A5F1',
-            dark4: '#FED2E2',
-            primary: '#8F87F1',
-            secondary: '#C68EFD',
-          }
-        }
-      }
-    }
+            dark1: "#8F87F1",
+            dark2: "#C68EFD",
+            dark3: "#E9A5F1",
+            dark4: "#FED2E2",
+            primary: "#8F87F1",
+            secondary: "#C68EFD",
+          },
+          animation: {
+            pulseSlow: "pulse 4s ease-in-out infinite",
+            floatUp: "floatUp 3s ease-in-out infinite alternate",
+          },
+          keyframes: {
+            floatUp: {
+              "0%": { transform: "translateY(0)" },
+              "100%": { transform: "translateY(-10px)" },
+            },
+          },
+          boxShadow: {
+            glow: "0 0 15px 3px rgba(143, 135, 241, 0.7)",
+          },
+          lineHeight: {
+            tighter: "1.15",
+          },
+        },
+      },
+    };
   </script>
+
+  <style>
+    /* Gradient text with glow */
+    .gradient-glow-text {
+      background: linear-gradient(90deg, #22d3ee, #ec4899, #f97316); /* bg-gradient-to-r from-cyan-400 via-pink-500 to-orange-500 */
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow:
+        0 0 8px rgba(236, 72, 153, 0.7), /* pink-500 */
+        0 0 15px rgba(34, 211, 238, 0.7); /* cyan-400 */
+    }
+  </style>
 </head>
 
-<body class="bg-white text-gray-800 dark:bg-dark1 dark:text-black">
-
+<body class="bg-white text-gray-800 dark:bg-dark1 dark:text-black" style="background-image: url('public/background.jpg'); background-size: cover">
   <!-- Navbar -->
-  <nav class="bg-black text-white px-6 py-4 flex items-center justify-between shadow-md dark:bg-dark2 dark:text-white">
-    <div class="flex items-center gap-10">
-      <img src="image-logo.png" alt="PrimeBasket Logo" class="h-10 w-auto" />
-    </div>
+  <nav
+    class="bg-black text-white px-4 sm:px-6 py-4 flex items-center justify-between shadow-md fixed top-0 left-0 w-full z-50 dark:bg-dark2"
+  >
     <div class="flex items-center gap-4">
-      <a href="#contact" class="border border-white px-2 py-1 rounded hover:bg-white hover:text-black transition">Contact</a>
-      <a href="#" class="border border-white px-2 py-1 rounded hover:bg-white hover:text-black transition">About Us</a>
-      <a id="login-link" href="login.html" class="border border-white px-2 py-1 rounded hover:bg-white hover:text-black transition">Login</a>
-      <a href="cart.html" class="relative border border-white px-3 py-1 rounded hover:bg-white hover:text-black transition flex items-center gap-1">
-        🛒 <span class="hidden sm:inline">Cart</span>
-        <span id="cart-count" class="absolute -top-2 -right-2 bg-red-600 text-black text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+      <img src="public/footer-logo.png" alt="Ultimate Graphics Logo" class="h-10 w-auto" />
+    </div>
+    <div class="flex items-center gap-4 text-sm sm:text-base">
+      <a
+        href="about.html"
+        class="whitespace-nowrap px-5 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition-all duration-300 text-sm md:text-base font-extrabold leading-tighter uppercase tracking-wide font-sans gradient-glow-text animate-pulseSlow"
+      >
+        About Us
       </a>
-      <button id="theme-toggle" class="relative w-12 h-6 bg-gray-300 rounded-full p-1 dark:bg-gray-700 transition-all">
-        <div id="theme-thumb" class="absolute top-0.5 left-0.5 w-5 h-5 bg-black rounded-full transition-transform dark:translate-x-6 dark:bg-white"></div>
-      </button>
+
+      <a
+        href="gallery.html"
+        class="whitespace-nowrap px-5 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition-all duration-300 text-sm md:text-base font-extrabold leading-tighter uppercase tracking-wide font-sans gradient-glow-text animate-pulseSlow"
+      >
+        Gallery
+      </a>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <section class="relative text-center py-20 text-white">
-    <div class="absolute inset-0">
-      <img src="overlay image.png" alt="PrimeBasket Background" class="w-full h-full object-cover opacity-30">
-      <div class="absolute inset-0 bg-black opacity-40"></div>
+  <section
+  class="relative bg-black/50 text-white py-24 px-4 sm:px-6 md:px-16 mt-20 flex justify-center items-center"
+>
+  <div
+    class="max-w-screen-xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 w-full"
+  >
+    <!-- Text Content -->
+    <div
+      class="flex-1 text-center md:text-left space-y-6 animate__animated animate__fadeInLeft"
+    >
+      <h1
+        class="text-5xl sm:text-6xl md:text-7xl font-extrabold leading-tighter uppercase tracking-wide font-sans gradient-glow-text animate__animated animate__fadeInDown animate__delay-1s"
+        style="line-height: 1.1"
+      >
+        Reshaping Your<br /> Business Boards
+      </h1>
+      <p
+        class="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-lg mx-auto md:mx-0 leading-relaxed animate__animated animate__fadeInUp animate__delay-2s"
+      >
+        Discover the latest trends and techniques in signage designs.
+      </p>
+      <a
+  href="contact-us.html"
+  class="inline-block whitespace-nowrap px-5 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition-all duration-300 text-sm md:text-base font-extrabold leading-tighter uppercase tracking-wide font-sans gradient-glow-text animate-pulseSlow animate__animated animate__fadeInUp animate__delay-2s"
+>
+  Contact Us
+</a>
+
     </div>
-    <div class="relative z-10 max-w-3xl mx-auto px-4">
-      <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Welcome to PrimeBasket</h1>
-      <p class="text-lg md:text-xl mb-6">Your one-stop shop for quality products at the best price</p>
-      <a href="#products" class="inline-block bg-black text-white px-6 py-3 rounded hover:bg-gray-800 dark:bg-dark3 dark:text-white transition duration-300 ease-in-out">
-        Start Shopping
-      </a>
+
+    <!-- Image Content -->
+    <div
+      class="flex-1 max-w-xs sm:max-w-sm md:max-w-lg mx-auto md:mx-0 animate__animated animate__zoomIn animate__delay-2s rounded-full overflow-hidden shadow-xl border-4 border-white"
+    >
+      <img src="public/graphics.png" alt="Futuristic 3D Art" class="w-full h-auto" />
     </div>
-  </section>
-
-  <!-- Product Section -->
-  <section id="products" class="bg-gray-200 dark:bg-dark4 py-12">
-    <main class="flex-grow px-4 py-8">
-      <div class="max-w-6xl mx-auto">
-        <h2 class="text-3xl font-semibold mb-6 text-center">Our Products</h2>
-
-        <!-- Search Bar -->
-        <div class="relative max-w-2xl mx-auto mb-8 px-4">
-          <input
-            type="text"
-            id="search-input"
-            placeholder="Search products..."
-            class="w-full px-4 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-primary"
-          />
-          <ul id="suggestions" class="absolute left-0 right-0 bg-white dark:bg-gray-700 border rounded mt-1 z-50 hidden max-h-60 overflow-y-auto"></ul>
-        </div>
-        <p class="text-center text-gray-500 mb-4">Browse through our collection of quality products.</p>        
-
-        <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-        <p id="no-products" class="text-center text-gray-500 hidden">No products available.</p>
-      </div>
-       <!-- Fetching products from API -->
-  <div id="loading-spinner" class="flex justify-center items-center mb-8">
-    <svg class="animate-spin h-10 w-10 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
-    </svg>
   </div>
-    </main>
-  </section>
+</section>
 
-  <!-- Contact Section -->
-   <form action="syxdmatheen@gmail.com" method="POST" class="hidden">
-  <section id="contact" class="bg-gray-100 dark:bg-dark2 py-20 px-6">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-4xl font-bold mb-4 text-gray-900 dark:text-black">Get in Touch</h2>
-      <p class="text-gray-600 dark:text-black mb-10 text-lg">We'd love to hear your feedback or answer any questions you may have.</p>
-      <form class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left bg-white dark:bg-dark4 shadow-lg rounded-lg p-8">
-        <div class="md:col-span-2">
-          <label class="block mb-2 font-semibold text-gray-700 dark:text-black">Full Name</label>
-          <input type="text" placeholder="Your Name" class="w-full px-5 py-3 rounded-lg bg-gray-100 dark:bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-dark1 transition duration-300" />
-        </div>
-        <div>
-          <label class="block mb-2 font-semibold text-gray-700 dark:text-black">Email</label>
-          <input type="email" placeholder="you@example.com" class="w-full px-5 py-3 rounded-lg bg-gray-100 dark:bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-dark1 transition duration-300" />
-        </div>
-        <div>
-          <label class="block mb-2 font-semibold text-gray-700 dark:text-black">Subject</label>
-          <input type="text" placeholder="Subject" class="w-full px-5 py-3 rounded-lg bg-gray-100 dark:bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-dark1 transition duration-300" />
-        </div>
-        <div class="md:col-span-2">
-          <label class="block mb-2 font-semibold text-gray-700 dark:text-black">Message</label>
-          <textarea rows="5" placeholder="Type your message..." class="w-full px-5 py-3 rounded-lg bg-gray-100 dark:bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-dark1 transition duration-300 resize-none"></textarea>
-        </div>
-        <div class="md:col-span-2">
-          <button type="submit" onclick="alert('Message sent successfully!'); return false;" class="w-full bg-black text-white font-semibold py-3 rounded-lg hover:bg-gray-800 transition duration-300">
-            Send Message
-          </button>
-        </div>
-      </form> 
+
+  <!-- Working Hours Section -->
+  <section class="bg-transparent text-white py-16 px-4 sm:px-6 md:px-16 text-center">
+    <div class="w-full h-1 bg-gradient-to-r from-purple-400 via-pink-500 to-purple-400 mb-10 rounded-full animate-pulseSlow"></div>
+    <div
+      class="max-w-4xl mx-auto flex flex-col md:flex-row justify-center items-center gap-16 md:gap-40 text-center"
+    >
+      <!-- Working Days -->
+      <div>
+        <h2 class="text-3xl font-bold mb-4 gradient-glow-text">Working Days</h2>
+        <p class="text-lg tracking-wide">Monday</p>
+        <p class="my-2 text-xl font-semibold">TO</p>
+        <p class="text-lg tracking-wide">Saturday</p>
+      </div>
+      <!-- Timings -->
+      <div>
+        <h2 class="text-3xl font-bold mb-4 gradient-glow-text">Timings</h2>
+        <p class="text-lg tracking-wide">10:00 AM</p>
+        <p class="my-2 text-xl font-semibold">TO</p>
+        <p class="text-lg tracking-wide">10:00 PM</p>
+      </div>
     </div>
+    <div class="w-full h-1 bg-gradient-to-r from-purple-400 via-pink-500 to-purple-400 mt-10 rounded-full animate-pulseSlow"></div>
   </section>
-</form>
 
-  <!-- Footer -->
-  <footer class="bg-black text-gray-600 text-center py-6 mt-12 dark:bg-dark2 dark:text-black">
-    <p>&copy; 2025 PrimeBasket. All rights reserved.</p>
+  <!-- Innovation Section -->
+  <section class="relative py-20 px-4 sm:px-6 bg-transparent text-center max-w-4xl mx-auto">
+    <!-- Heading -->
+    <h2
+      class="text-5xl font-extrabold tracking-wide mb-6 gradient-glow-text drop-shadow-lg leading-tight animate-pulseSlow"
+      style="line-height: 1.1"
+    >
+      DIMENSIONS OF INNOVATION
+    </h2>
+
+    <!-- Paragraph -->
+    <p
+      class="text-gray-300 text-xl leading-relaxed max-w-3xl mx-auto px-2 sm:px-0"
+      style="line-height: 1.6"
+    >
+      At Ultimate Graphics, we push the boundaries of design and craftsmanship,
+      bringing you innovative and high-quality signboards that make an impact.
+      From LED displays and acrylic signs to vinyl banners and 3D lettering,
+      our cutting-edge techniques and AI-driven creativity ensure precision,
+      durability, and stunning visuals.
+    </p>
+
+    <!-- Animated divider line -->
+    <div
+      class="w-3/4 h-1 mx-auto mt-12 bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 animate-pulse rounded-full shadow-glow"
+    ></div>
+  </section>
+
+  <!-- Designer Profile Section -->
+  <section class="bg-transparent py-16 px-4 sm:px-6 max-w-5xl mx-auto">
+    <div
+      class="flex flex-col items-center md:flex-row gap-10 text-center md:text-left"
+    >
+      <!-- Profile Image -->
+      <div class="flex-shrink-0 animate-floatUp">
+        <img
+          src="public/Screenshot 2025-05-31 055725.png"
+          alt="Syed Shazeem"
+          class="rounded-full w-64 h-64 object-cover shadow-lg border-4 border-white"
+        />
+      </div>
+      <!-- Profile Info -->
+      <div>
+        <h2
+          class="text-4xl font-bold text-white mb-2 gradient-glow-text drop-shadow-md leading-tight"
+          style="line-height: 1.15"
+        >
+          Syed Shazeem
+        </h2>
+        <p class="text-gray-300 text-lg leading-relaxed max-w-xl" style="line-height:1.6">
+          A renowned designer with a specialization in character creation and
+          designing.
+        </p>
+      </div>
+    </div>
+    <div class="w-full h-1 bg-gradient-to-r from-purple-400 via-pink-500 to-purple-400 mt-16 rounded-full animate-pulseSlow"></div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="bg-transparent py-16 px-4 sm:px-6 max-w-5xl mx-auto text-center">
+    <!-- Banner -->
+    <h2
+      class="text-4xl font-bold text-white mb-6 gradient-glow-text drop-shadow-md leading-tight max-w-4xl mx-auto"
+      style="line-height: 1.15"
+    >
+      ULTIMATE GRAPHICS – Your Signage & Branding Partner
+    </h2>
+    <p class="text-gray-300 text-lg leading-relaxed max-w-xl mx-auto mb-8" style="line-height: 1.6">
+      Discover our creativity in action! At Ultimate Graphics, we design and craft all types of signboards with precision and innovation.
+    </p>
+    <!-- View Gallery Button -->
+    <a
+      href="gallery.html"
+      class="inline-block rounded-lg hover:bg-gray-900 transition duration-300 shadow-lg whitespace-nowrap px-5 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition-all duration-300 text-sm md:text-base font-extrabold leading-tighter uppercase tracking-wide font-sans gradient-glow-text animate-pulseSlow"
+      >View Gallery</a
+    >
+    <div class="w-full h-1 bg-gradient-to-r from-purple-400 via-pink-500 to-purple-400 mt-20 rounded-full animate-pulseSlow"></div>
+  </section>
+  
+<!-- footer 1 section -->
+  <section class="bg-[#070f2b] text-white py-10 px-6 sm:px-16">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+    <!-- Logo and About -->
+    <div>
+      <div class="flex items-center gap-2">
+        <img src="public/footer-logo.png" alt="ultimategraphics Logo" />
+
+      </div>
+      <p class="text-sm text-gray-300 mb-4">One stop for all SIGNAGE solutions</p>
+      <p class="text-sm text-gray-400 mb-4">
+        ultimategraphics serve as the one-stop solution for all your signage needs. Our signage comes in a wide variety of shapes and sizes that match your business needs and fit your budget.
+      </p>
+      <div class="flex gap-4 mt-4">
+        <a href="#" class="text-white hover:text-red-500"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-white hover:text-red-500"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-white hover:text-red-500"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <!-- Quicklinks -->
+    <div>
+      <h3 class="text-lg font-semibold mb-2 border-b-2 border-red-600 w-fit pb-1">Quicklinks</h3>
+      <ul class="space-y-2 text-sm mt-3">
+        <li><a href="about.html" class="hover:text-red-400">About Us</a></li>
+        <li><a href="#" class="hover:text-red-400">Services</a></li>
+        <li><a href="#" class="hover:text-red-400">Blogs</a></li>
+        <li><a href="contact-us.html" class="hover:text-red-400">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
+    <div>
+      <h3 class="text-lg font-semibold mb-2 border-b-2 border-red-600 w-fit pb-1">Get in touch</h3>
+      <p class="text-sm text-gray-400 mt-3"><span class="font-semibold text-white">Address:</span><br>JP nagar 9th phase<br> amruthnagar road, opposite to axis bank<br>Bangalore, Pincode 560062</p>
+      <p class="mt-3 text-sm"><span class="font-semibold">Mobile:</span> +91 8050093019</p>
+      <p class="mt-2 text-sm"><span class="font-semibold">Email:</span><br>
+        <a href="mailto:ultimategraphics74@gmail.com" class="text-red-700">ultimategraphics74@gmail.com</a>
+      </p>
+    </div>
+
+    <!-- Subscribe -->
+    <div>
+  <h3 class="text-lg font-semibold mb-2">Subscribe</h3>
+  <p class="text-sm text-gray-400 mb-4">
+    Enter your email address to get notified about our new creative signage solutions
+  </p>
+  <form class="flex">
+    <input
+      type="email"
+      placeholder="Email Address"
+      class="bg-transparent border border-gray-600 px-4 py-2 text-sm text-white rounded-l-md focus:outline-none focus:ring-2 focus:ring-red-500"
+    />
+    <button
+      type="submit"
+      class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-r-full flex items-center justify-center"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        class="w-4 h-4"
+      >
+        <path d="M10,20A10,10,0,1,0,0,10,10,10,0,0,0,10,20ZM8.711,4.3l5.7,5.766L8.7,15.711,7.3,14.289l4.289-4.242L7.289,5.7Z" />
+      </svg>
+    </button>
+  </form>
+</div>
+</section>
+
+
+  <!-- Footer 2 -->
+  <footer
+    class="bg-black text-gray-600 text-center py-6 mt-0 dark:bg-dark2 dark:text-black"
+  >
+    <p>&copy; 2025 Ultimate Graphics. All rights reserved.</p>
   </footer>
-
-  <!-- Scripts -->
-  <script>
-    function updateCartCount() {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-      const cartCountElement = document.getElementById('cart-count');
-      if (cartCountElement) cartCountElement.textContent = totalItems;
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      updateCartCount();
-
-      const toggleBtn = document.getElementById('theme-toggle');
-      const html = document.documentElement;
-
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
-        html.classList.add('dark');
-      } else {
-        html.classList.remove('dark');
-      }
-
-      if (toggleBtn) {
-        toggleBtn.addEventListener('click', () => {
-          html.classList.toggle('dark');
-          const isDark = html.classList.contains('dark');
-          localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        });
-      }
-
-      // Handle Login/Profile switch
-      const loginLink = document.getElementById('login-link');
-      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-
-      if (isLoggedIn && loginLink) {
-        loginLink.textContent = 'Profile';
-        loginLink.setAttribute('href', 'profile.html');
-      }
-    });
-
-  async function fetchProducts(query = '') {
-    const loadingSpinner = document.getElementById('loading-spinner');
-    try {
-      loadingSpinner.style.display = 'flex';
-      const url = query
-        ? `https://primebasket.onrender.com/api/shop/products?search=${query}`
-        : 'https://primebasket.onrender.com/api/shop/products';
-
-      const response = await fetch(url);
-      const products = await response.json();
-      const allProducts = products.results || [];
-      renderProducts(allProducts);
-    } catch (err) {
-      console.error('Error fetching products:', err);
-      document.getElementById('no-products').textContent =
-        'Failed to load products. Please try again later.';
-      document.getElementById('no-products').classList.remove('hidden');
-    } finally {
-      loadingSpinner.style.display = 'none';
-    }
-  }
-
-  function renderProducts(list) {
-    const productList = document.getElementById('product-list');
-    const noProductsMessage = document.getElementById('no-products');
-    productList.innerHTML = '';
-
-    if (!list.length) {
-      noProductsMessage.classList.remove('hidden');
-      return;
-    } else {
-      noProductsMessage.classList.add('hidden');
-    }
-
-    list.forEach(product => {
-      const card = document.createElement('div');
-      card.className =
-        'border rounded-lg p-4 shadow-lg bg-white dark:bg-gray-800 flex flex-col items-center';
-      card.innerHTML = `
-        <img src="${product.image || 'https://via.placeholder.com/150'}" alt="${product.product}" class="w-full h-48 object-cover rounded-md mb-4">
-        <h3 class="text-lg font-semibold product-name">${product.product}</h3>
-        <p class="text-gray-500 dark:text-gray-300 text-sm">${product.category} - ${product.sub_category}</p>
-        <p class="text-sm mt-2 text-center">${product.description?.substring(0, 100) || 'No description available'}...</p>
-        <p class="font-bold mt-2">Price: ₹${product.sale_price} <span class="line-through text-gray-400">₹${product.market_price}</span></p>
-        <p class="text-yellow-500">⭐ ${product.rating || 'No Rating'}</p>
-        <button class="mt-4 w-full bg-primary text-white py-2 rounded hover:bg-secondary transition add-to-cart-btn">Add to Cart</button>
-      `;
-      card.querySelector('.add-to-cart-btn').addEventListener('click', () => {
-        const name = product.product;
-        const price = parseInt(product.sale_price);
-        const image = product.image;
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const existing = cart.find(item => item.name === name);
-        if (existing) {
-          existing.quantity += 1;
-        } else {
-          cart.push({ name, price, image, quantity: 1 });
-        }
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartCount();
-        alert(`${name} added to cart!`);
-      });
-      productList.appendChild(card);
-    });
-  }
-
-  async function handleSearchInput() {
-    const input = document.getElementById('search-input');
-    const suggestions = document.getElementById('suggestions');
-
-    let debounceTimeout;
-    input.addEventListener('input', async () => {
-      clearTimeout(debounceTimeout);
-      const query = input.value.trim();
-
-      if (!query) {
-        suggestions.innerHTML = '';
-        suggestions.classList.add('hidden');
-        fetchProducts();
-        return;
-      }
-
-      debounceTimeout = setTimeout(async () => {
-        try {
-          const res = await fetch(
-            `https://primebasket.onrender.com/api/shop/products?search=${query}`
-          );
-          const data = await res.json();
-          const results = data.results || [];
-
-          // Suggestions dropdown
-          if (results.length) {
-            suggestions.innerHTML = '';
-            results.forEach(item => {
-              const li = document.createElement('li');
-              li.textContent = item.product;
-              li.className =
-                'px-4 py-2 hover:bg-primary hover:text-white cursor-pointer';
-              li.addEventListener('click', () => {
-                input.value = item.product;
-                suggestions.classList.add('hidden');
-                fetchProducts(item.product);
-              });
-              suggestions.appendChild(li);
-            });
-            suggestions.classList.remove('hidden');
-          } else {
-            suggestions.innerHTML = '<li class="px-4 py-2 text-gray-400">No matches</li>';
-            suggestions.classList.remove('hidden');
-          }
-
-          renderProducts(results);
-        } catch (err) {
-          console.error('Error fetching search suggestions:', err);
-        }
-      }, 300); // debounce
-    });
-
-    document.addEventListener('click', (e) => {
-      if (!suggestions.contains(e.target) && e.target !== input) {
-        suggestions.classList.add('hidden');
-      }
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    updateCartCount();
-    fetchProducts();
-    handleSearchInput();
-  });
-</script>
 </body>
+
 </html>

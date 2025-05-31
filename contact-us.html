@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact-ultimategraphics</title>
+    <link rel="icon" href="public/ug-logo2.png" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            dark1: "#8F87F1",
+            dark2: "#C68EFD",
+            dark3: "#E9A5F1",
+            dark4: "#FED2E2",
+            primary: "#8F87F1",
+            secondary: "#C68EFD",
+          },
+          animation: {
+            pulseSlow: "pulse 4s ease-in-out infinite",
+            floatUp: "floatUp 3s ease-in-out infinite alternate",
+          },
+          keyframes: {
+            floatUp: {
+              "0%": { transform: "translateY(0)" },
+              "100%": { transform: "translateY(-10px)" },
+            },
+          },
+          boxShadow: {
+            glow: "0 0 15px 3px rgba(143, 135, 241, 0.7)",
+          },
+          lineHeight: {
+            tighter: "1.15",
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* Gradient text with glow */
+    .gradient-glow-text {
+      background: linear-gradient(90deg, #22d3ee, #ec4899, #f97316); /* bg-gradient-to-r from-cyan-400 via-pink-500 to-orange-500 */
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow:
+        0 0 8px rgba(236, 72, 153, 0.7), /* pink-500 */
+        0 0 15px rgba(34, 211, 238, 0.7); /* cyan-400 */
+    }
+  </style>
+</head>
+
+<body class="bg-white text-gray-800 dark:bg-dark1 dark:text-black">
+
+    <!-- Navbar -->
+    <nav
+        class="bg-black text-white px-6 py-4 flex items-center justify-between shadow-md fixed top-0 left-0 w-full z-50 dark:bg-dark2">
+        <div class="flex items-center gap-4">
+            <img src="public/footer-logo.png" alt="Ultimate Graphics Logo" class="h-10 w-auto" />
+        </div>
+        <div class="flex items-center gap-4">
+            <a
+        href="index.html"
+        class="whitespace-nowrap px-5 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition-all duration-300 text-sm md:text-base font-extrabold leading-tighter uppercase tracking-wide font-sans gradient-glow-text animate-pulseSlow"
+      >
+        Home
+      </a>
+
+            <a
+        href="gallery.html"
+        class="whitespace-nowrap px-5 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition-all duration-300 text-sm md:text-base font-extrabold leading-tighter uppercase tracking-wide font-sans gradient-glow-text animate-pulseSlow"
+      >
+        Gallery
+      </a>
+
+        </div>
+    </nav>
+
+
+
+    <!-- contact section -->
+     <div class="contact-banner"> 
+    <div class="about-container bg-gradient-to-r from-cyan-400 via-pink-500 to-orange-500 text-white text-center py-20 animate__animated animate__fadeInDown">
+  <h1 class="text-7xl mt-2 p-6 font-bold mb-4">Contact us</h1>
+  <p class="text-lg animate__animated animate__fadeInUp animate__delay-1s">we'd love to hear from you!</p>
+</div>
+</div>
+
+
+<section class="py-12 px-4 md:px-16" style="background-image: url('public/background.jpg'); background-size: cover;">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+    
+    <!-- Left Column -->
+<div class="text-left space-y-10">
+  <div>
+    <h2 class="text-5xl font-extrabold leading-tight uppercase tracking-wide font-sans gradient-glow-text animate-pulseSlow">
+    Let's Talk
+</h2>
+
+    <p class="text-gray-600 text-lg">We'd love to hear your feedback or answer any questions you may have.</p>
+  </div>
+
+  <!-- Address Block -->
+  <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition duration-300">
+    <div class="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-tr from-red-400 to-pink-500 text-white">
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M10,20A10,10,0,1,0,0,10,10,10,0,0,0,10,20ZM8.711,4.3l5.7,5.766L8.7,15.711,7.3,14.289l4.289-4.242L7.289,5.7Z"/>
+      </svg>
+    </div>
+    <div>
+      <h4 class="text-lg font-semibold text-gray-800">Address</h4>
+      <p class="text-gray-600 text-base leading-relaxed">
+        JP nagar 9th phase amruthnagar road, opposite to axis bank<br>Bangalore, Pincode 560062</p>
+    </div>
+  </div>
+
+  <!-- Email Block -->
+  <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition duration-300">
+    <div class="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-tr from-yellow-400 to-orange-500 text-white">
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M2 4a2 2 0 012-2h16a2 2 0 012 2v16a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm16 2H6v.01L12 13l6-6.99V6z"/>
+      </svg>
+    </div>
+    <div>
+      <h4 class="text-lg font-semibold text-gray-800">Email</h4>
+      <p class="text-gray-600 text-base">
+        ultimategraphics74@gmail.com
+      </p>
+    </div>
+  </div>
+
+  <!-- Phone Block -->
+  <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition duration-300">
+    <div class="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-tr from-blue-500 to-indigo-500 text-white">
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M17 1H7C5.897 1 5 1.897 5 3v18c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2V3c0-1.103-.897-2-2-2zM12 21c-.553 0-1-.447-1-1s.447-1 1-1 1 .447 1 1-.447 1-1 1zm5-4H7V4h10v13z"/>
+      </svg>
+    </div>
+    <div>
+      <h4 class="text-lg font-semibold text-gray-800">Phone</h4>
+      <p class="text-gray-600 text-base">
+        +91 8050093019
+      </p>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Right Column (Form) -->
+    <div>
+      <section id="contact" class="bg-white rounded-lg shadow-lg p-6 sm:p-8 transition-all duration-300 transform hover:scale-105">
+        <h2 class="text-3xl font-bold mb-4 text-gray-700">Get in Touch</h2>
+        <p class="text-gray-600 mb-8 text-base">
+          We’d love to hear your feedback or answer any questions you may have.
+        </p>
+        <form
+          class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left"
+          onsubmit="alert('Message sent successfully!'); return false;"
+        >
+          <div class="md:col-span-2">
+            <label for="name" class="block mb-2 font-semibold text-gray-700">Full Name</label>
+            <input
+              id="name"
+              type="text"
+              placeholder="Your Name"
+              class="w-full px-5 py-3 rounded-lg bg-gray-100 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300"
+              required
+            />
+          </div>
+          <div>
+            <label for="email" class="block mb-2 font-semibold text-gray-700">Email</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="you@example.com"
+              class="w-full px-5 py-3 rounded-lg bg-gray-100 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300"
+              required
+            />
+          </div>
+          <div>
+            <label for="subject" class="block mb-2 font-semibold text-gray-700">Subject</label>
+            <input
+              id="subject"
+              type="text"
+              placeholder="Subject (optional)"
+              class="w-full px-5 py-3 rounded-lg bg-gray-100 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300"
+            />
+          </div>
+          <div class="md:col-span-2">
+            <label for="message" class="block mb-2 font-semibold text-gray-700">Message</label>
+            <textarea
+              id="message"
+              rows="5"
+              placeholder="Type your message..."
+              class="w-full px-5 py-3 rounded-lg bg-gray-100 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300 resize-none"
+              required
+            ></textarea>
+          </div>
+          <div class="md:col-span-2">
+            <button
+              type="submit mailto:ultimategraphics74@gmail.com"
+              class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition duration-300"
+            >
+              Send Message
+            </button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+</section>
+
+<!-- footer 1 section -->
+  <section class="bg-[#070f2b] text-white py-10 px-6 sm:px-16">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+    <!-- Logo and About -->
+    <div>
+      <div class="flex items-center gap-2">
+        <img src="public/footer-logo.png" alt="ultimategraphics Logo" />
+        <h2 class="text-2xl font-bold">
+</h2>
+
+      </div>
+      <p class="text-sm text-gray-300 mb-4">One stop for all SIGNAGE solutions</p>
+      <p class="text-sm text-gray-400 mb-4">
+        ultimategraphics serve as the one-stop solution for all your signage needs. Our signage comes in a wide variety of shapes and sizes that match your business needs and fit your budget.
+      </p>
+      <div class="flex gap-4 mt-4">
+        <a href="#" class="text-white hover:text-red-500"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-white hover:text-red-500"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-white hover:text-red-500"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <!-- Quicklinks -->
+    <div>
+      <h3 class="text-lg font-semibold mb-2 border-b-2 border-red-600 w-fit pb-1">Quicklinks</h3>
+      <ul class="space-y-2 text-sm mt-3">
+        <li><a href="about.html" class="hover:text-red-400">About Us</a></li>
+        <li><a href="#" class="hover:text-red-400">Services</a></li>
+        <li><a href="#" class="hover:text-red-400">Blogs</a></li>
+        <li><a href="contact-us.html" class="hover:text-red-400">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
+    <div>
+      <h3 class="text-lg font-semibold mb-2 border-b-2 border-red-600 w-fit pb-1">Get in touch</h3>
+      <p class="text-sm text-gray-400 mt-3"><span class="font-semibold text-white">Address:</span><br>JP nagar 9th phase<br> amruthnagar road, opposite to axis bank<br>Bangalore, Pincode 560062</p>
+      <p class="mt-3 text-sm"><span class="font-semibold">Mobile:</span> +91 8050093019</p>
+      <p class="mt-2 text-sm"><span class="font-semibold">Email:</span><br>
+        <a href="mailto:ultimategraphics74@gmail.com" class="text-red-700">ultimategraphics74@gmail.com</a>
+      </p>
+    </div>
+
+    <!-- Subscribe -->
+    <div>
+  <h3 class="text-lg font-semibold mb-2">Subscribe</h3>
+  <p class="text-sm text-gray-400 mb-4">
+    Enter your email address to get notified about our new creative signage solutions
+  </p>
+  <form class="flex">
+    <input
+      type="email"
+      placeholder="Email Address"
+      class="bg-transparent border border-gray-600 px-4 py-2 text-sm text-white rounded-l-md focus:outline-none focus:ring-2 focus:ring-red-500"
+    />
+    <button
+      type="submit"
+      class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-r-full flex items-center justify-center"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        class="w-4 h-4"
+      >
+        <path d="M10,20A10,10,0,1,0,0,10,10,10,0,0,0,10,20ZM8.711,4.3l5.7,5.766L8.7,15.711,7.3,14.289l4.289-4.242L7.289,5.7Z" />
+      </svg>
+    </button>
+  </form>
+</div>
+</section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-gray-600 text-center py-6 mt-0 dark:bg-dark2 dark:text-black">
+        <p>&copy; 2025 Ultimate Graphics. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
